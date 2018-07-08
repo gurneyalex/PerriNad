@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_iconography_iconography,access_iconography_iconography,model_iconography_iconography,,1,0,0,0
+access_iconography_tag,access_iconography_tag,model_iconography_tag,,1,0,0,0
+access_iconography_opus,access_iconography_opus,model_iconography_opus,,1,0,0,0

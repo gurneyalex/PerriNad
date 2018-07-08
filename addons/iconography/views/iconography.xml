@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_view_iconography" model="ir.actions.act_window">
+    <field name="name">Iconographies</field>
+    <field name="res_model">iconography.iconography</field>
+    <field name="view_mode">tree, form</field>
+  </record>
+
+  <record id="action_view_opus" model="ir.actions.act_window">
+    <field name="name">Opus</field>
+    <field name="res_model">iconography.opus</field>
+    <field name="view_mode">tree, form</field>
+  </record>
+  <record id="action_view_tags" model="ir.actions.act_window">
+    <field name="name">Tags</field>
+    <field name="res_model">iconography.tag</field>
+    <field name="view_mode">tree, form</field>
+  </record>
+
+  <record id="action_import" model="ir.actions.act_window">
+    <field name="name">Import</field>
+    <field name="res_model">iconography.import.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+  </record>
+
+  <menuitem name='Iconography'
+    id='menu_main_icono'
+    sequence='20'
+    />
+  <menuitem name='Iconographies'
+            id='menu_icono_icono'
+            sequence='10'
+            parent='menu_main_icono'
+            action="action_view_iconography"
+            />
+  <menuitem name="Opus"
+            id="menu_icono_opus"
+            sequence="20"
+            parent='menu_main_icono'
+            action="action_view_opus"
+            />
+  <menuitem name="Tags"
+            id="menu_icono_tags"
+            sequence="25"
+            parent='menu_main_icono'
+            action="action_view_tags"
+            />
+  <menuitem name="Import"
+            id="menu_icono_import"
+            sequence="30"
+            parent='menu_main_icono'
+            action="action_import"
+            groups="base.group_no_one"
+            />
+
+  <record id="view_iconography_search" model="ir.ui.view">
+    <field name="name">iconography search</field>
+    <field name="model">iconography.iconography</field>
+    <field name="arch" type="xml">
+      <search string="Iconographies">
+        <field name="name"/>
+        <field name="tag_ids"/>
+        <field name="name_alt"/>
+      </search>
+    </field>
+  </record>
+
+  <record id="view_iconography_tree" model="ir.ui.view">
+    <field name="name">iconography tree</field>
+    <field name="model">iconography.iconography</field>
+    <field name="arch" type="xml">
+      <tree string="Iconographies">
+        <field name="name"/>
+        <field name="name_alt"/>
+        <field name="represents"/>
+        <field name="deco_author"/>
+        <field name="opus_author"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_iconography_form" model="ir.ui.view">
+    <field name="name">iconography form</field>
+    <field name="model">iconography.iconography</field>
+    <field name="arch" type="xml">
+      <form string="Iconography">
+        <sheet>
+        <group>
+          <group>
+            <field name="name"/>
+            <field name="name_alt"/>
+          </group>
+          <group>
+            <field name="opus_id"/>
+            <field name="deco_author"/>
+            <field name="opus_author"/>
+            <field name="folio"/>
+          </group>
+        </group>
+        <field name="image" widget="image"/>
+        <group>
+          <group>
+            <field name="description"/>
+            <field name="represents"/>
+            <field name="zzz"/>
+            <field name="location"/>
+            <field name="genre"/>
+            <field name="origin"/>
+          </group>
+          <group>
+            <field name="filigrane"/>
+            <field name="color"/>
+            <field name="width"/>
+            <field name="height"/>
+            <field name="reso_x"/>
+            <field name="reso_y"/>
+          </group>
+        </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_tag_search" model="ir.ui.view">
+    <field name="name">tag search</field>
+    <field name="model">iconography.tag</field>
+    <field name="arch" type="xml">
+      <search string="Tags">
+        <field name="name"/>
+      </search>
+    </field>
+  </record>
+
+  <record id="view_tags_tree" model="ir.ui.view">
+    <field name="name">tags tree</field>
+    <field name="model">iconography.tag</field>
+    <field name="arch" type="xml">
+      <tree string="Tags">
+        <field name="name"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_tag_form" model="ir.ui.view">
+    <field name="name">tag form</field>
+    <field name="model">iconography.tag</field>
+    <field name="arch" type="xml">
+      <form string="Tag">
+        <sheet>
+          <div class="oe_button_box" name="button_box"
+               groups="base.group_user">
+            <button class="oe_stat_button"
+                    name="action_view_iconography"
+                    type="object"
+                    icon="fa-files-o">
+              <field string="Iconographies"
+                     name="iconography_count"
+                     />
+            </button>
+          </div>
+        <group>
+          <group>
+            <field name="name"/>
+          </group>
+        </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+
+  <record id="view_opus_search" model="ir.ui.view">
+    <field name="name">opus search</field>
+    <field name="model">iconography.opus</field>
+    <field name="arch" type="xml">
+      <search string="Opus">
+        <field name="name"/>
+        <field name="author"/>
+        <field name="editor"/>
+      </search>
+    </field>
+  </record>
+ 
+  <record id="view_opus_tree" model="ir.ui.view">
+    <field name="name">opus tree</field>
+    <field name="model">iconography.opus</field>
+    <field name="arch" type="xml">
+      <tree string="Opus">
+        <field name="name"/>
+        <field name="date"/>
+        <field name="author"/>
+        <field name="editor"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_opus_form" model="ir.ui.view">
+    <field name="name">opus form</field>
+    <field name="model">iconography.opus</field>
+    <field name="arch" type="xml">
+      <form string="Opus">
+        <sheet>
+          <div class="oe_button_box" name="button_box"
+               groups="base.group_user">
+            <button class="oe_stat_button"
+                    name="action_view_iconography"
+                    type="object"
+                    icon="fa-files-o">
+              <field string="Iconographies"
+                     name="iconography_count"
+                     />
+            </button>
+          </div>
+        <group>
+          <group>
+            <field name="name"/>
+            <field name="date"/>
+            <field name="opus_country"/>
+            <field name="opus_area"/>
+            <field name="author"/>
+            <field name="editor"/>
+            <field name="destination"/>
+          </group>
+          <group>
+            <field name="conservation_city"/>
+            <field name="conservation_place"/>
+            <field name="conservation_reference"/>
+            <field name="conservation_support"/>
+
+          </group>
+        </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_import_wizard_form" model="ir.ui.view">
+    <field name="name">import wizard form</field>
+    <field name="model">iconography.import.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Import">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <button name="action_import" type="object" string="Import"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>
