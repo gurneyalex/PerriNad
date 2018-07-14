@@ -4,7 +4,6 @@ import glob
 import logging
 import base64
 from odoo import models, fields, api
-#from odoo.addons.base_import.models.odf_ods_reader import ODSReader
 import csv
 
 
@@ -30,10 +29,11 @@ class IconographyImportWizard(models.TransientModel):
         index = {}
         for dirname, subdirs, filenames in os.walk(self.name):
             for name in filenames:
-                if name.lower().split('.')[-1] in ('gif', 'png', 'jpg', 'jpeg'):
+                extension = name.lower().split('.')[-1]
+                if extension in ('gif', 'png', 'jpg', 'jpeg'):
                     index[name.lower()] = os.path.join(dirname, name)
         return index
-    
+
     def _import(self, filename, index):
         _logger.info('reading file %s', filename)
         reader = csv.reader(open(filename))
@@ -63,7 +63,7 @@ class IconographyImportWizard(models.TransientModel):
         cons_place = row[26].strip()
         cons_reference = row[27].strip()
         folio = row[28].strip()
-        name = row[29].strip()
+        title = row[29].strip()
         represents = row[30].strip()
         cons_supp = row[31].strip()
         lang = row[32].strip()
@@ -89,7 +89,6 @@ class IconographyImportWizard(models.TransientModel):
              ('author', '=', author),
              ('conservation_city', '=', cons_town),
              ('conservation_place', '=', cons_place),
-             ('conservation_support', '=', cons_supp),
              ('editor', '=', editor)]
         )
         if not opus:
@@ -98,20 +97,24 @@ class IconographyImportWizard(models.TransientModel):
                  'author': author,
                  'conservation_city': cons_town,
                  'conservation_place': cons_place,
-                 'conservation_support': cons_supp,
+                 'conservation_reference': cons_reference,
                  'author': author,
                  'opus_country': country,
-                 'opus_area': '',
+                 'opus_area': city,
                  'destination': dest,
                  'date': date,
                  'editor': editor,
                  }
             )
-        work = Icono.create(
-            {'name': title,
-             'name_alt': subtitle,
+        Icono.create(
+            {'title': title,
+             'subtitle': subtitle,
              'filename': filename,
-             'filigrane': 'n' if filigrane.startswith('Sans') else ('y' if filigrane.startswith('Avec') else '?'),
+             'filigrane': ('n' if filigrane.startswith('Sans')
+                           else ('y' if filigrane.startswith('Avec')
+                                 else '?')
+                           ),
+             'conservation_support': cons_supp,
              'folio': folio,
              'represents': represents,
              'lang': lang,

@@ -1,17 +1,27 @@
-from odoo import models, api, fields
+from odoo import models, api, fields, tools
+import logging
+
+_logger = logging.getLogger(__name__)
 
 
 class IconographyDocument(models.Model):
     _name = 'iconography.iconography'
 
-    name = fields.Char('name', related='opus_id.name', store=True)
-    name_alt = fields.Char('Subtitle')
+    name = fields.Char(
+        'name', related='opus_id.name', store=True, readonly=True
+    )
+    title = fields.Char('Title')
+    subtitle = fields.Char('Subtitle')
     filename = fields.Char('filename', required=True)
-    filigrane = fields.Selection([('y', 'Yes'), ('n', 'No'), ('?', 'Unknown')], required=True, default='?')
+    filigrane = fields.Selection([('y', 'Yes'),
+                                  ('n', 'No'),
+                                  ('?', 'Unknown')],
+                                 required=True,
+                                 default='?')
     folio = fields.Char('Folio')
     represents = fields.Char('Representation of')
     lang = fields.Char('Lang')
-    opus_id = fields.Many2one('iconography.opus')
+    opus_id = fields.Many2one('iconography.opus', ondelete='cascade')
     zzz = fields.Char('Zzz')
     location = fields.Char('Location')
     genre = fields.Char('Genre')
@@ -22,6 +32,11 @@ class IconographyDocument(models.Model):
         inverse='_set_description'
     )
     image = fields.Binary('Image', attachment=True)
+    image_small = fields.Binary(
+        "Small-sized image",
+        compute='_compute_images',
+        store=True,
+        attachment=False)
     color = fields.Boolean('Color')
     width = fields.Integer('Width')
     height = fields.Integer('Height')
@@ -32,19 +47,34 @@ class IconographyDocument(models.Model):
         related="opus_id.author", readonly=True, store=True,
     )
     tag_ids = fields.Many2many('iconography.tag', string='Tags')
+    conservation_support = fields.Char('Conservation support')
 
     @api.depends('tag_ids')
     def _compute_description(self):
         for rec in self:
-            rec.description = ','.join(rec.mapped('tag_ids.name'))
+            rec.description = ' ; '.join(rec.mapped('tag_ids.name'))
+
+    @api.one
+    @api.depends('image')
+    def _compute_images(self):
+        try:
+            resized_images = tools.image_get_resized_images(
+                self.image,
+                return_big=False,
+                return_medium=False,
+            )
+        except Exception:
+            _logger.exception('Error while resizing image')
+            self.image_small = False
+        else:
+            self.image_small = resized_images['image_small']
 
     def _set_description(self):
         Tag = self.env['iconography.tag']
         for rec in self:
-            tags = rec.description.split(',')
+            tags = [t.strip() for t in rec.description.split(';')]
             rec_tags = self.env['iconography.tag']
             for tagname in tags:
-                tagname = tagname.strip()
                 tag = Tag.search([('name', '=', tagname)])
                 if not tag:
                     tag = Tag.create({'name': tagname})
@@ -57,16 +87,18 @@ class IconographyTag(models.Model):
 
     name = fields.Char('name', required=True, indexed=True)
     iconography_ids = fields.Many2many('iconography.iconography')
-    iconography_count = fields.Integer('Iconography count', compute='_compute_iconography_count')
+    iconography_count = fields.Integer('Iconography count',
+                                       compute='_compute_iconography_count')
 
     def _compute_iconography_count(self):
         for rec in self:
             rec.iconography_count = len(rec.iconography_ids)
 
     def action_view_iconography(self):
-        action = self.env.ref('iconography.action.view_iconography').read()[0]
+        action = self.env.ref('iconography.action_view_iconography').read()[0]
         action['domain'] = [('tag_ids', 'in', self.ids)]
         return action
+
 
 class IconographyOpus(models.Model):
     _name = 'iconography.opus'
@@ -74,7 +106,6 @@ class IconographyOpus(models.Model):
     conservation_city = fields.Char('City of conservation')
     conservation_place = fields.Char('Place of conservation')
     conservation_reference = fields.Char('Conservation reference')
-    conservation_support = fields.Char('Conservation support')
     date = fields.Char('Date')
     opus_country = fields.Char('Country')
     opus_area = fields.Char('Area / City')
@@ -82,14 +113,14 @@ class IconographyOpus(models.Model):
     author = fields.Char('Author')
     editor = fields.Char('Edit')
     iconography_ids = fields.One2many('iconography.iconography', 'opus_id')
-    iconography_count = fields.Integer('Iconography count', compute='_compute_iconography_count')
-
+    iconography_count = fields.Integer('Iconography count',
+                                       compute='_compute_iconography_count')
 
     def _compute_iconography_count(self):
         for rec in self:
             rec.iconography_count = len(rec.iconography_ids)
 
     def action_view_iconography(self):
-        action = self.env.ref('iconography.action.view_iconography').read()[0]
+        action = self.env.ref('iconography.action_view_iconography').read()[0]
         action['domain'] = [('opus_id', 'in', self.ids)]
         return action

@@ -3,18 +3,18 @@
   <record id="action_view_iconography" model="ir.actions.act_window">
     <field name="name">Iconographies</field>
     <field name="res_model">iconography.iconography</field>
-    <field name="view_mode">tree, form</field>
+    <field name="view_mode">kanban,tree,form</field>
   </record>
 
   <record id="action_view_opus" model="ir.actions.act_window">
     <field name="name">Opus</field>
     <field name="res_model">iconography.opus</field>
-    <field name="view_mode">tree, form</field>
+    <field name="view_mode">tree,form</field>
   </record>
   <record id="action_view_tags" model="ir.actions.act_window">
     <field name="name">Tags</field>
     <field name="res_model">iconography.tag</field>
-    <field name="view_mode">tree, form</field>
+    <field name="view_mode">tree,form</field>
   </record>
 
   <record id="action_import" model="ir.actions.act_window">
@@ -61,7 +61,8 @@
       <search string="Iconographies">
         <field name="name"/>
         <field name="tag_ids"/>
-        <field name="name_alt"/>
+            <field name="title"/>
+            <field name="subtitle"/>
       </search>
     </field>
   </record>
@@ -72,7 +73,8 @@
     <field name="arch" type="xml">
       <tree string="Iconographies">
         <field name="name"/>
-        <field name="name_alt"/>
+        <field name="title"/>
+        <field name="subtitle"/>
         <field name="represents"/>
         <field name="deco_author"/>
         <field name="opus_author"/>
@@ -89,12 +91,14 @@
         <group>
           <group>
             <field name="name"/>
-            <field name="name_alt"/>
+            <field name="title"/>
+            <field name="subtitle"/>
           </group>
           <group>
             <field name="opus_id"/>
             <field name="deco_author"/>
             <field name="opus_author"/>
+            <field name="conservation_support"/>
             <field name="folio"/>
           </group>
         </group>
@@ -128,6 +132,7 @@
     <field name="arch" type="xml">
       <search string="Tags">
         <field name="name"/>
+        <field name="iconography_count"/>
       </search>
     </field>
   </record>
@@ -191,6 +196,9 @@
         <field name="date"/>
         <field name="author"/>
         <field name="editor"/>
+        <field name="conservation_city"/>
+        <field name="conservation_place"/>
+        <field name="iconography_count"/>
       </tree>
     </field>
   </record>
@@ -226,7 +234,6 @@
             <field name="conservation_city"/>
             <field name="conservation_place"/>
             <field name="conservation_reference"/>
-            <field name="conservation_support"/>
 
           </group>
         </group>
@@ -247,6 +254,36 @@
           </group>
         </sheet>
       </form>
+    </field>
+  </record>
+
+
+  <record id="iconography_kanban_view" model="ir.ui.view">
+    <field name="name">Iconography Kanban</field>
+    <field name="model">iconography.iconography</field>
+    <field name="arch" type="xml">
+      <kanban>
+        <field name="id"/>
+        <field name="image_small"/>
+        <templates>
+          <t t-name="kanban-box">
+            <div class="oe_kanban_global_click">
+              <div class="o_kanban_image">
+                <img t-att-src="kanban_image('iconography.iconography',
+                                'image_small', record.id.raw_value)"/>
+              </div>
+              <div class="oe_kanban_details">
+                <strong class="o_kanban_record_title"><field
+                name="name"/> <field name="title"/> <field
+                name="subtitle"/></strong>
+                <div class="o_kanban_tags_section">
+                  <field name="tag_ids"/>
+                </div>
+              </div>
+            </div>
+          </t>
+        </templates>
+      </kanban>
     </field>
   </record>
 </odoo>
