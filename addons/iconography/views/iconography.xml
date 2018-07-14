@@ -63,6 +63,7 @@
         <field name="tag_ids"/>
             <field name="title"/>
             <field name="subtitle"/>
+            <field name="century"/>
       </search>
     </field>
   </record>
@@ -78,6 +79,7 @@
         <field name="represents"/>
         <field name="deco_author"/>
         <field name="opus_author"/>
+        <field name="century"/>
       </tree>
     </field>
   </record>
@@ -183,6 +185,7 @@
         <field name="name"/>
         <field name="author"/>
         <field name="editor"/>
+        <field name="century"/>
       </search>
     </field>
   </record>
@@ -199,6 +202,7 @@
         <field name="conservation_city"/>
         <field name="conservation_place"/>
         <field name="iconography_count"/>
+        <field name="century"/>
       </tree>
     </field>
   </record>

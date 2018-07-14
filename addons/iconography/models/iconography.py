@@ -4,6 +4,52 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
+class IconographyOpus(models.Model):
+    _name = 'iconography.opus'
+    name = fields.Char('name', required=True)
+    conservation_city = fields.Char('City of conservation')
+    conservation_place = fields.Char('Place of conservation')
+    conservation_reference = fields.Char('Conservation reference')
+    date = fields.Char('Date')
+    opus_country = fields.Char('Country')
+    opus_area = fields.Char('Area / City')
+    destination = fields.Char('Destination')
+    author = fields.Char('Author')
+    editor = fields.Char('Edit')
+    iconography_ids = fields.One2many('iconography.iconography', 'opus_id')
+    iconography_count = fields.Integer('Iconography count',
+                                       compute='_compute_iconography_count')
+    century = fields.Integer(compute='_compute_century',
+                             store=True,
+                             readonly=True)
+
+    @api.depends('date')
+    def _compute_century(self):
+        for rec in self:
+            date = rec.date.strip()
+            if not date:
+                rec.century = -1
+                continue
+            date += ' '
+            try:
+                century = int(date.replace('(', ' (').split()[0])
+                rec.century = century
+            except ValueError:
+                if date.lower() == "gallo romain":
+                    rec.century = 0
+                elif date.lower() == "romain":
+                    rec.century = 0
+
+    def _compute_iconography_count(self):
+        for rec in self:
+            rec.iconography_count = len(rec.iconography_ids)
+
+    def action_view_iconography(self):
+        action = self.env.ref('iconography.action_view_iconography').read()[0]
+        action['domain'] = [('opus_id', 'in', self.ids)]
+        return action
+
+
 class IconographyDocument(models.Model):
     _name = 'iconography.iconography'
 
@@ -48,6 +94,9 @@ class IconographyDocument(models.Model):
     )
     tag_ids = fields.Many2many('iconography.tag', string='Tags')
     conservation_support = fields.Char('Conservation support')
+    century = fields.Integer(related='opus_id.century',
+                             store=True,
+                             readonly=True)
 
     @api.depends('tag_ids')
     def _compute_description(self):
@@ -97,30 +146,4 @@ class IconographyTag(models.Model):
     def action_view_iconography(self):
         action = self.env.ref('iconography.action_view_iconography').read()[0]
         action['domain'] = [('tag_ids', 'in', self.ids)]
-        return action
-
-
-class IconographyOpus(models.Model):
-    _name = 'iconography.opus'
-    name = fields.Char('name', required=True)
-    conservation_city = fields.Char('City of conservation')
-    conservation_place = fields.Char('Place of conservation')
-    conservation_reference = fields.Char('Conservation reference')
-    date = fields.Char('Date')
-    opus_country = fields.Char('Country')
-    opus_area = fields.Char('Area / City')
-    destination = fields.Char('Destination')
-    author = fields.Char('Author')
-    editor = fields.Char('Edit')
-    iconography_ids = fields.One2many('iconography.iconography', 'opus_id')
-    iconography_count = fields.Integer('Iconography count',
-                                       compute='_compute_iconography_count')
-
-    def _compute_iconography_count(self):
-        for rec in self:
-            rec.iconography_count = len(rec.iconography_ids)
-
-    def action_view_iconography(self):
-        action = self.env.ref('iconography.action_view_iconography').read()[0]
-        action['domain'] = [('opus_id', 'in', self.ids)]
         return action
