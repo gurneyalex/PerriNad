@@ -20,7 +20,7 @@ class IconographyOpus(models.Model):
     iconography_count = fields.Integer('Iconography count',
                                        compute='_compute_iconography_count')
     century = fields.Integer(compute='_compute_century',
-                             store=True,
+                             store=True, group_operator=None,
                              readonly=True)
 
     @api.depends('date')
@@ -96,6 +96,7 @@ class IconographyDocument(models.Model):
     conservation_support = fields.Char('Conservation support')
     century = fields.Integer(related='opus_id.century',
                              store=True,
+                             group_operator=None,
                              readonly=True)
 
     @api.depends('tag_ids')
@@ -133,6 +134,7 @@ class IconographyDocument(models.Model):
 
 class IconographyTag(models.Model):
     _name = 'iconography.tag'
+    _order = 'name'
 
     name = fields.Char('name', required=True, indexed=True)
     iconography_ids = fields.Many2many('iconography.iconography')

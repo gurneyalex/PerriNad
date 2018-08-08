@@ -3,7 +3,7 @@ import os.path as osp
 import glob
 import logging
 import base64
-from odoo import models, fields, api
+from odoo import models, fields, api, registry
 import csv
 
 
@@ -13,7 +13,15 @@ _logger = logging.getLogger(__name__)
 class IconographyImportWizard(models.TransientModel):
     _name = 'iconography.import.wizard'
 
+    def _default_offset(self):
+        return self.env['iconography.iconography'].search_count([]) + 1
+
     name = fields.Char('Base Directory', required=True)
+    offset = fields.Integer('Start Row',
+                            required=True,
+                            default=_default_offset)
+    length = fields.Integer('Nb Rows', required=True, default=10000)
+    clean = fields.Boolean('Clean before import')
 
     @api.multi
     def action_import(self):
@@ -22,8 +30,17 @@ class IconographyImportWizard(models.TransientModel):
                      '*.csv')
         )
         index = self._build_image_index()
+        self._clean()
         for filename in filenames:
             self._import(filename, index)
+
+    def _clean(self):
+        if self.clean:
+            cr = registry(self._cr.dbname).cursor()
+            self = self.with_env(self.env(cr=cr))
+            self.env['iconography.opus'].search([]).unlink()
+            cr.commit()
+            cr.close()
 
     def _build_image_index(self):
         index = {}
@@ -38,10 +55,21 @@ class IconographyImportWizard(models.TransientModel):
         _logger.info('reading file %s', filename)
         reader = csv.reader(open(filename))
         _logger.info('importing lines')
-        for row in reader:
+        cr = registry(self._cr.dbname).cursor()
+        self = self.with_env(self.env(cr=cr))
+        for num, row in enumerate(reader):
             if row[0] == 'ID':
                 continue
+            if num < self.offset:
+                continue
+            if num >= self.offset + self.length:
+                break
             self._handle_row(row, index)
+            if num % 100 == 0:
+                self._cr.commit()
+                _logger.info('COMMIT')
+        self._cr.commit()
+        self._cr.close()
 
     def _handle_row(self, row, index):
         id = row[0].strip()

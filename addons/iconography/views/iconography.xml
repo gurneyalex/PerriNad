@@ -253,10 +253,19 @@
       <form string="Import">
         <sheet>
           <group>
-            <field name="name"/>
-            <button name="action_import" type="object" string="Import"/>
+            <group>
+              <field name="name"/>
+              <field name="clean"/>
+            </group>
+            <group>
+              <field name="offset"/>
+              <field name="length"/>
+            </group>
           </group>
         </sheet>
+        <footer>
+                      <button name="action_import" type="object" string="Import"/>
+        </footer>
       </form>
     </field>
   </record>
