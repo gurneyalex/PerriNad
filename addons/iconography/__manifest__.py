@@ -5,5 +5,6 @@
     'licence': 'AGPL-3',
     'data': ['security/ir.model.access.csv',
              'views/iconography.xml',
-             ]
+             ],
+    'installable': True,
 }

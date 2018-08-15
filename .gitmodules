@@ -1,4 +1,0 @@
-[submodule "odoo"]
-	path = odoo
-	url = https://github.com/OCA/OCB.git
-	branch = 11.0
