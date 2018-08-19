@@ -6,22 +6,26 @@ _logger = logging.getLogger(__name__)
 
 class IconographyOpus(models.Model):
     _name = 'iconography.opus'
-    name = fields.Char('name', required=True)
+    name = fields.Char('name', required=True, help="name of the work")
     conservation_city = fields.Char('City of conservation')
     conservation_place = fields.Char('Place of conservation')
     conservation_reference = fields.Char('Conservation reference')
-    date = fields.Char('Date')
-    opus_country = fields.Char('Country')
-    opus_area = fields.Char('Area / City')
-    destination = fields.Char('Destination')
-    author = fields.Char('Author')
-    editor = fields.Char('Edit')
-    iconography_ids = fields.One2many('iconography.iconography', 'opus_id')
+    date = fields.Char('Date', help="date of realization (approximative)")
+    opus_country = fields.Char('Country',
+                               help="country where the work was made")
+    opus_area = fields.Char('Area / City', help='area where the work was made')
+    destination = fields.Char('Destination',
+                              help="person for which the work was made")
+    author = fields.Char('Author', help="author of the work")
+    editor = fields.Char('Edit', help="editor of the work")
+    iconography_ids = fields.One2many('iconography.iconography', 'opus_id',
+                                      help="iconographies in the work")
     iconography_count = fields.Integer('Iconography count',
                                        compute='_compute_iconography_count')
     century = fields.Integer(compute='_compute_century',
                              store=True, group_operator=None,
-                             readonly=True)
+                             readonly=True,
+                             help="century of creation of the work")
 
     @api.depends('date')
     def _compute_century(self):
@@ -54,21 +58,29 @@ class IconographyDocument(models.Model):
     _name = 'iconography.iconography'
 
     name = fields.Char(
-        'name', related='opus_id.name', store=True, readonly=True
+        'name', related='opus_id.name', store=True, readonly=True,
+        help="name of the work in which the iconography is present"
     )
-    title = fields.Char('Title')
-    subtitle = fields.Char('Subtitle')
-    filename = fields.Char('filename', required=True)
-    filigrane = fields.Selection([('y', 'Yes'),
-                                  ('n', 'No'),
-                                  ('?', 'Unknown')],
-                                 required=True,
-                                 default='?')
+    title = fields.Char('Title', help="title of the iconography")
+    subtitle = fields.Char('Subtitle', help="subtitle of the iconography")
+    filename = fields.Char('filename', required=True,
+                           help="file name of the image")
+    filigrane = fields.Selection(
+        [('y', 'Yes'),
+         ('n', 'No'),
+         ('?', 'Unknown')],
+        required=True,
+        default='?',
+        help="presence of a filigrane in the image file"
+    )
     folio = fields.Char('Folio')
     represents = fields.Char('Representation of')
     lang = fields.Char('Lang')
     opus_id = fields.Many2one('iconography.opus', ondelete='cascade')
-    zzz = fields.Char('Zzz')
+    zzz = fields.Char(
+        'Zzz',
+        help="mysterious field only Perrine knows what it is"
+    )
     location = fields.Char('Location')
     genre = fields.Char('Genre')
     origin = fields.Char('Origin')
@@ -93,16 +105,21 @@ class IconographyDocument(models.Model):
         related="opus_id.author", readonly=True, store=True,
     )
     tag_ids = fields.Many2many('iconography.tag', string='Tags')
-    conservation_support = fields.Char('Conservation support')
+    conservation_support = fields.Char(
+        'Conservation support',
+        help="not quite sure what this is, ask Perrine"
+    )
     century = fields.Integer(related='opus_id.century',
                              store=True,
                              group_operator=None,
                              readonly=True)
+    date = fields.Char(related='opus_id.date',
+                       readonly=True)
 
     @api.depends('tag_ids')
     def _compute_description(self):
         for rec in self:
-            rec.description = ' ; '.join(rec.mapped('tag_ids.name'))
+            rec.description = ' ;\n'.join(rec.mapped('tag_ids.name'))
 
     @api.one
     @api.depends('image')

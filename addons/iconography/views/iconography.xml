@@ -61,9 +61,9 @@
       <search string="Iconographies">
         <field name="name"/>
         <field name="tag_ids"/>
-            <field name="title"/>
-            <field name="subtitle"/>
-            <field name="century"/>
+        <field name="title"/>
+        <field name="subtitle"/>
+        <field name="century"/>
       </search>
     </field>
   </record>
@@ -79,6 +79,8 @@
         <field name="represents"/>
         <field name="deco_author"/>
         <field name="opus_author"/>
+        <field name="conservation_support"/>
+        <field name="date"/>
         <field name="century"/>
       </tree>
     </field>
@@ -90,39 +92,49 @@
     <field name="arch" type="xml">
       <form string="Iconography">
         <sheet>
-        <group>
           <group>
-            <field name="name"/>
-            <field name="title"/>
-            <field name="subtitle"/>
+            <group>
+              <field name="name"/>
+              <field name="title"/>
+              <field name="subtitle"/>
+              <field name="represents"/>
+            </group>
+            <group>
+              <field name="opus_id"/>
+              <field name="deco_author"/>
+              <field name="opus_author"/>
+              <field name="conservation_support"/>
+              <field name="folio"/>
+            </group>
           </group>
+          <div>
+            <field name="image" widget="image" />
+          </div>
+          <div>
+            <field name="filename" placeholder="name of the file"  class="oe_inline"/>
+          </div>
+          <div>
+            <field name="tag_ids" widget="many2many_tags" class="oe_edit_only"/>
+          </div>
+          <div>
+            <field name="description" readonly="1" class="oe_read_only"/>
+          </div>
           <group>
-            <field name="opus_id"/>
-            <field name="deco_author"/>
-            <field name="opus_author"/>
-            <field name="conservation_support"/>
-            <field name="folio"/>
+            <group>
+              <field name="zzz"/>
+              <field name="location"/>
+              <field name="genre"/>
+              <field name="origin"/>
+            </group>
+            <group>
+              <field name="filigrane"/>
+              <field name="color"/>
+              <field name="width"/>
+              <field name="height"/>
+              <field name="reso_x"/>
+              <field name="reso_y"/>
+            </group>
           </group>
-        </group>
-        <field name="image" widget="image"/>
-        <group>
-          <group>
-            <field name="description"/>
-            <field name="represents"/>
-            <field name="zzz"/>
-            <field name="location"/>
-            <field name="genre"/>
-            <field name="origin"/>
-          </group>
-          <group>
-            <field name="filigrane"/>
-            <field name="color"/>
-            <field name="width"/>
-            <field name="height"/>
-            <field name="reso_x"/>
-            <field name="reso_y"/>
-          </group>
-        </group>
         </sheet>
       </form>
     </field>
