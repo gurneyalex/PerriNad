@@ -1,0 +1,348 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* iconography
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-19 19:01+0000\n"
+"PO-Revision-Date: 2018-08-19 21:09+0200\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_opus_area
+msgid "Area / City"
+msgstr "Zone / Ville"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_opus_author
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_author
+msgid "Author"
+msgstr "Auteur"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_import_wizard_name
+msgid "Base Directory"
+msgstr "Répertoire racine"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_century
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_century
+msgid "Century"
+msgstr "Siècle"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_conservation_city
+msgid "City of conservation"
+msgstr "Ville de conservation"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_import_wizard_clean
+msgid "Clean before import"
+msgstr "Nettoyer avant l'import"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_color
+msgid "Color"
+msgstr "Couleur"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_conservation_reference
+msgid "Conservation reference"
+msgstr "Référence de conservation"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_conservation_support
+msgid "Conservation support"
+msgstr "Support de conservation"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_opus_country
+msgid "Country"
+msgstr "Pays"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_create_uid
+#: model:ir.model.fields,field_description:iconography.field_iconography_import_wizard_create_uid
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_create_uid
+#: model:ir.model.fields,field_description:iconography.field_iconography_tag_create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_create_date
+#: model:ir.model.fields,field_description:iconography.field_iconography_import_wizard_create_date
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_create_date
+#: model:ir.model.fields,field_description:iconography.field_iconography_tag_create_date
+msgid "Created on"
+msgstr "Créé le"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_date
+msgid "Date"
+msgstr "Date"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_deco_author
+msgid "Decorator"
+msgstr "Décorateur"
+
+# Décorateur
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_description
+msgid "Description"
+msgstr "Description"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_destination
+msgid "Destination"
+msgstr "Destinataire"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_display_name
+#: model:ir.model.fields,field_description:iconography.field_iconography_import_wizard_display_name
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_display_name
+#: model:ir.model.fields,field_description:iconography.field_iconography_tag_display_name
+msgid "Display Name"
+msgstr "Nom affiché"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_editor
+msgid "Edit"
+msgstr "Éditer"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_filigrane
+msgid "Filigrane"
+msgstr "Filigrane"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_folio
+msgid "Folio"
+msgstr "Folio"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_genre
+msgid "Genre"
+msgstr "Genre"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_height
+msgid "Height"
+msgstr "Hauteur"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_reso_x
+msgid "Horizontal resolution"
+msgstr "Résolution horizontale"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_id
+#: model:ir.model.fields,field_description:iconography.field_iconography_import_wizard_id
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_id
+#: model:ir.model.fields,field_description:iconography.field_iconography_tag_id
+msgid "ID"
+msgstr "ID"
+
+#. module: iconography
+#: model:ir.actions.act_window,name:iconography.action_view_iconography
+#: model:ir.ui.menu,name:iconography.menu_icono_icono
+#: model:ir.ui.view,arch_db:iconography.view_iconography_search
+#: model:ir.ui.view,arch_db:iconography.view_iconography_tree
+#: model:ir.ui.view,arch_db:iconography.view_opus_form
+#: model:ir.ui.view,arch_db:iconography.view_tag_form
+msgid "Iconographies"
+msgstr "Iconographies"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_iconography_ids
+#: model:ir.model.fields,field_description:iconography.field_iconography_tag_iconography_ids
+#: model:ir.ui.menu,name:iconography.menu_main_icono
+#: model:ir.ui.view,arch_db:iconography.view_iconography_form
+msgid "Iconography"
+msgstr "Iconographie"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_iconography_count
+#: model:ir.model.fields,field_description:iconography.field_iconography_tag_iconography_count
+msgid "Iconography count"
+msgstr "Nombre d'iconographies"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_image
+msgid "Image"
+msgstr "Image"
+
+#. module: iconography
+#: model:ir.actions.act_window,name:iconography.action_import
+#: model:ir.ui.menu,name:iconography.menu_icono_import
+#: model:ir.ui.view,arch_db:iconography.view_import_wizard_form
+msgid "Import"
+msgstr "Importer"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_lang
+msgid "Lang"
+msgstr "Langue"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography___last_update
+#: model:ir.model.fields,field_description:iconography.field_iconography_import_wizard___last_update
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus___last_update
+#: model:ir.model.fields,field_description:iconography.field_iconography_tag___last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_write_uid
+#: model:ir.model.fields,field_description:iconography.field_iconography_import_wizard_write_uid
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_write_uid
+#: model:ir.model.fields,field_description:iconography.field_iconography_tag_write_uid
+msgid "Last Updated by"
+msgstr "Dernière modification par"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_write_date
+#: model:ir.model.fields,field_description:iconography.field_iconography_import_wizard_write_date
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_write_date
+#: model:ir.model.fields,field_description:iconography.field_iconography_tag_write_date
+msgid "Last Updated on"
+msgstr "Modifié pour la dernière fois le"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_location
+msgid "Location"
+msgstr "Emplacement"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_import_wizard_length
+msgid "Nb Rows"
+msgstr "Nombre de lignes"
+
+#. module: iconography
+#: selection:iconography.iconography,filigrane:0
+msgid "No"
+msgstr "No"
+
+#. module: iconography
+#: model:ir.actions.act_window,name:iconography.action_view_opus
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_opus_id
+#: model:ir.ui.menu,name:iconography.menu_icono_opus
+#: model:ir.ui.view,arch_db:iconography.view_opus_form
+#: model:ir.ui.view,arch_db:iconography.view_opus_search
+#: model:ir.ui.view,arch_db:iconography.view_opus_tree
+msgid "Opus"
+msgstr "Œuvre"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_origin
+msgid "Origin"
+msgstr "Origine"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_conservation_place
+msgid "Place of conservation"
+msgstr "Lieu de conservation"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_represents
+msgid "Representation of"
+msgstr "Représentation de"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_image_small
+msgid "Small-sized image"
+msgstr "Image (petite)"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_import_wizard_offset
+msgid "Start Row"
+msgstr "Ligne de début"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_subtitle
+msgid "Subtitle"
+msgstr "Sous titre"
+
+#. module: iconography
+#: model:ir.ui.view,arch_db:iconography.view_tag_form
+msgid "Tag"
+msgstr "Étiquette"
+
+#. module: iconography
+#: model:ir.actions.act_window,name:iconography.action_view_tags
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_tag_ids
+#: model:ir.ui.menu,name:iconography.menu_icono_tags
+#: model:ir.ui.view,arch_db:iconography.view_tag_search
+#: model:ir.ui.view,arch_db:iconography.view_tags_tree
+msgid "Tags"
+msgstr "Étiquettes"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_title
+msgid "Title"
+msgstr "Titre"
+
+#. module: iconography
+#: selection:iconography.iconography,filigrane:0
+msgid "Unknown"
+msgstr "Inconnu"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_reso_y
+msgid "Vertical resolution"
+msgstr "Résolution verticale"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_width
+msgid "Width"
+msgstr "Largeur"
+
+#. module: iconography
+#: selection:iconography.iconography,filigrane:0
+msgid "Yes"
+msgstr "Oui"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_zzz
+msgid "Zzz"
+msgstr "Zzz"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_filename
+msgid "filename"
+msgstr "Nom du fichier"
+
+#. module: iconography
+#: model:ir.model,name:iconography.model_iconography_iconography
+msgid "iconography.iconography"
+msgstr "iconographie.iconography"
+
+#. module: iconography
+#: model:ir.model,name:iconography.model_iconography_import_wizard
+msgid "iconography.import.wizard"
+msgstr "iconography.import.wizard"
+
+#. module: iconography
+#: model:ir.model,name:iconography.model_iconography_opus
+msgid "iconography.opus"
+msgstr "inconography.opus"
+
+#. module: iconography
+#: model:ir.model,name:iconography.model_iconography_tag
+msgid "iconography.tag"
+msgstr "iconography.tag"
+
+#. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_name
+#: model:ir.model.fields,field_description:iconography.field_iconography_opus_name
+#: model:ir.model.fields,field_description:iconography.field_iconography_tag_name
+msgid "name"
+msgstr "nom"
+
