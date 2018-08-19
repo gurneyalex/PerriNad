@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-19 19:01+0000\n"
-"PO-Revision-Date: 2018-08-19 19:01+0000\n"
+"POT-Creation-Date: 2018-08-19 20:28+0000\n"
+"PO-Revision-Date: 2018-08-19 20:28+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -84,6 +84,7 @@ msgid "Created on"
 msgstr ""
 
 #. module: iconography
+#: model:ir.model.fields,field_description:iconography.field_iconography_iconography_date
 #: model:ir.model.fields,field_description:iconography.field_iconography_opus_date
 msgid "Date"
 msgstr ""
@@ -314,8 +315,51 @@ msgid "Zzz"
 msgstr ""
 
 #. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_opus_opus_area
+msgid "area where the work was made"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_iconography_opus_author
+#: model:ir.model.fields,help:iconography.field_iconography_opus_author
+msgid "author of the work"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_iconography_century
+#: model:ir.model.fields,help:iconography.field_iconography_opus_century
+msgid "century of creation of the work"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_opus_opus_country
+msgid "country where the work was made"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_iconography_date
+#: model:ir.model.fields,help:iconography.field_iconography_opus_date
+msgid "date of realization (approximative)"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_opus_editor
+msgid "editor of the work"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_iconography_filename
+msgid "file name of the image"
+msgstr ""
+
+#. module: iconography
 #: model:ir.model.fields,field_description:iconography.field_iconography_iconography_filename
 msgid "filename"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_opus_iconography_ids
+msgid "iconographies in the work"
 msgstr ""
 
 #. module: iconography
@@ -339,9 +383,54 @@ msgid "iconography.tag"
 msgstr ""
 
 #. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_iconography_zzz
+msgid "mysterious field only Perrine knows what it is"
+msgstr ""
+
+#. module: iconography
 #: model:ir.model.fields,field_description:iconography.field_iconography_iconography_name
 #: model:ir.model.fields,field_description:iconography.field_iconography_opus_name
 #: model:ir.model.fields,field_description:iconography.field_iconography_tag_name
 msgid "name"
+msgstr ""
+
+#. module: iconography
+#: model:ir.ui.view,arch_db:iconography.view_iconography_form
+msgid "name of the file"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_opus_name
+msgid "name of the work"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_iconography_name
+msgid "name of the work in which the iconography is present"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_iconography_conservation_support
+msgid "not quite sure what this is, ask Perrine"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_opus_destination
+msgid "person for which the work was made"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_iconography_filigrane
+msgid "presence of a filigrane in the image file"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_iconography_subtitle
+msgid "subtitle of the iconography"
+msgstr ""
+
+#. module: iconography
+#: model:ir.model.fields,help:iconography.field_iconography_iconography_title
+msgid "title of the iconography"
 msgstr ""
 
