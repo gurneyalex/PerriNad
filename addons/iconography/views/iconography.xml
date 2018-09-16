@@ -27,6 +27,7 @@
   <menuitem name='Iconography'
     id='menu_main_icono'
     sequence='20'
+    web_icon="iconography,static/description/icon.png"
     />
   <menuitem name='Iconographies'
             id='menu_icono_icono'
